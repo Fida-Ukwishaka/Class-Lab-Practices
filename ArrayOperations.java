@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 public class ArrayOperations {
     public static void main(String[] args) {
@@ -7,15 +8,20 @@ public class ArrayOperations {
         //Identifying the index of a name
         System.out.print("Enter a name to find its index: ");
         String nameToFind = inputs.nextLine();
-        int index = 0;
+        int index = -1; 
         for (int i = 0; i < names.length; i++) {
             if (names[i].equalsIgnoreCase(nameToFind)) {
                 index = i;
                 break;
             }
         }
-        System.out.println("The index of " + nameToFind + " is: " + index);
-
+        if (index != -1) {
+            System.out.println("The index of " + nameToFind + " is: " + index);
+        } 
+        else {
+            System.out.println(nameToFind + " was not found in the array.");
+        }
+    
 
         //swapping two names
         System.out.println("Which names do you want to swap?");
@@ -23,8 +29,8 @@ public class ArrayOperations {
         String FirstName = inputs.nextLine();
         System.out.print("Enter the second name: ");
         String SecondName = inputs.nextLine();
-        int firstIndex = 0;
-        int secondIndex = 0;
+        int firstIndex = -1;
+        int secondIndex = -1;
         for (int i = 0; i < names.length; i++) {
             if (names[i].equalsIgnoreCase(FirstName)) {
                 firstIndex = i;
@@ -33,12 +39,17 @@ public class ArrayOperations {
                 secondIndex = i;
             }
         }
-        String swapping = names[firstIndex];
-        names[firstIndex] = names[secondIndex];
-        names[secondIndex] = swapping;
-        System.out.println("Names after swapping:");
-        for (String name : names) {
-            System.out.println(name);
+        if (firstIndex == -1 || secondIndex == -1) {
+            System.out.println("One or both names were not found. Swap cannot be performed.");
+        } 
+        else {
+            String swapping = names[firstIndex];
+            names[firstIndex] = names[secondIndex];
+            names[secondIndex] = swapping;
+            System.out.println("Names after swapping:");
+            for (String name : names) {
+                System.out.println(name);
+            }
         }
 
 
@@ -85,22 +96,19 @@ public class ArrayOperations {
                 found = true;
                 break;    
             }
-            else{
-                break;
-            }
         }
         if (found) {
-                System.out.println("Name is on the list");
+                System.out.println("Name is found");
         
         }
         else{
-            System.out.println("Name is not on the list");
+            System.out.println("Name is not in the array");
         }
 
         
 
         // Binary Search
-        
+        Arrays.sort(names, String.CASE_INSENSITIVE_ORDER);
         System.out.print("Enter a name to search using binary search: ");
         String nameToSearch = inputs.nextLine();
         int left = 0;
@@ -115,13 +123,15 @@ public class ArrayOperations {
             }
             if (result > 0) {
                 left = mid + 1;
-            } else {
+            } 
+            else {
                 right = mid - 1;
             }
         }
         if (isFound) {
             System.out.println("Name found using binary search.");
-        } else {
+        } 
+        else {
             System.out.println("Name not found using binary search.");
         }
  
