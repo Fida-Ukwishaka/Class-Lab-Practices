@@ -19,6 +19,18 @@ public class arrays{
         System.out.println("The average age is: " + AverageAge);
         System.out.println("The largest age is: " + largestAge);
         System.out.println("The smallest age is: " + SmallestAge);
+
+        int [][] num = new int [2][2];
+        for (int i = 0; i< num[0].length;i++){
+            int total = 0;
+            for(int j =0; j<num.length;j++){
+                total += num[i][j];
+                num[i][j] = (int) Math.random();
+                System.err.println("Sum of comlumn: "+ i+ " is "+total);
+            }
+        }
+       // System.out.println(num[i][j]);
+
     }
 }
 
